@@ -103,7 +103,7 @@
                 transform: scale(1);
                 width: 100vw;
                 z-index: 0;
-                background-image: url('assets/images/bg.gif?v=2d8db494');
+                background-image: var(--background-image);
                 background-position: center;
                 background-repeat: repeat;
                 background-size: contain;
@@ -141,6 +141,7 @@
                 --site-language-margin-left: 0;
                 --site-language-margin-right: auto;
                 --viewport-height: 100vh;
+                --background-image: url('assets/images/bg.gif');
             }
 
             html {
@@ -3559,6 +3560,15 @@
                 ready.run();
             }
             )();
+            // Change the background on day/night
+            (function() {
+                var hour = new Date().getHours();
+                var image = (hour >= 6 && hour < 18)
+                    ? "url('assets/images/bg2.png')"
+                    : "url('assets/images/bg.gif')";
+
+                document.documentElement.style.setProperty('--background-image', image);
+            })();
         </script>
     </body>
 </html>
